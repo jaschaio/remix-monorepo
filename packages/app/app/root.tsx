@@ -9,11 +9,26 @@ import {
   ScrollRestoration,
 } from "@remix-run/react";
 
+import { getToken } from 'services/User.ts';
+
 export const links: LinksFunction = () => [
   ...(cssBundleHref ? [{ rel: "stylesheet", href: cssBundleHref }] : []),
 ];
 
+export const loader = () => {
+
+  const token = getToken();
+
+  return {
+    token,
+  };
+
+};
+
 export default function App() {
+
+  console.log( useLoaderData );
+
   return (
     <html lang="en">
       <head>
